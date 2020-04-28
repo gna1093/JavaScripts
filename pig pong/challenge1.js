@@ -1,6 +1,7 @@
 
 var scores,roundScore,activePlayer,gamePlayer,lastDice;
 
+
 init();
 
 //document.querySelector('#current-'+activePlayer).textContent=dice;
