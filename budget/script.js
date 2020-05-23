@@ -179,7 +179,7 @@ var UIController = (function(){
       int = numSplit[0];
       if(int.length > 3){
         int = int.substr(0,int.length-3)+','+int.substr(int.length-3,int.length);
-        console.log(int);
+      //  console.log(int);
 
       }
 
@@ -188,6 +188,14 @@ var UIController = (function(){
       return (type === 'exp' ? '-' : '+') + ' '+ int +'.'+ dec;
 
   };
+
+  var nodeListForEach = function(list,callback){
+      for(var i=0; i<list.length; i++){
+        callback(list[i],i);
+  //      console.log(list[i]+' , '+i);
+      }
+  };
+
 
   return {
     getinput : function(){
@@ -252,12 +260,6 @@ var UIController = (function(){
         var fields = document.querySelectorAll(DOMstrings.expensesPercLabel);
         console.log(fields);
 
-        var nodeListForEach = function(list,callback){
-            for(var i=0; i<list.length; i++){
-              callback(list[i],i);
-              console.log(list[i]+' , '+i);
-            }
-        }
 
         nodeListForEach(fields,function(current,index){
             if(percentages[index]>0){
@@ -282,11 +284,26 @@ var UIController = (function(){
       document.querySelector(DOMstrings.dateLabel).textContent = months[month]+' '+year;
 
     },
+
     deleteListItem : function(selectorID){
       //  console.log(selectorID);
         var ele = document.getElementById(selectorID);
       //  console.log(ele);
         ele.parentNode.removeChild(ele);
+    },
+
+    changeType : function(){
+
+        var fields = document.querySelectorAll(
+          DOMstrings.inputType+','+
+          DOMstrings.inputDescription+','+
+          DOMstrings.inputValue);
+
+        nodeListForEach(fields,function(cur){
+          cur.classList.toggle('red-focus');
+        });
+
+        document.querySelector(DOMstrings.inputButton).classList.toggle('red');
     },
 
 
@@ -312,6 +329,8 @@ var Controller = (function(budgetCtrl,UICtrl){
     });
 
      document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
+
+     document.querySelector(DOM.inputType).addEventListener('change',UICtrl.changeType());
 
   };
 
