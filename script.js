@@ -1,7 +1,7 @@
 
 //First class function
 
-function mainfunc(args){
+/*function mainfunc(args){
   if(args==='developer')
     return function(name){
       console.log("hello "+args+" "+name+" !");
@@ -23,7 +23,7 @@ mainfunc('Architec')('xyz');
 mainfunc('Designer')('gp');
 mainfunc('Designer')('asd');
 
-mainfunc('developer')
+mainfunc('developer')*/
 
 /*var years = [1994,2000,1947,1980];
 
@@ -38,3 +38,17 @@ function func(x){
   return 2020-x
 }
 console.log(arrayCalc(years,func));*/
+
+
+
+//ES5
+var box5={
+  color :'green',
+  clickMe:function(){
+    //self=this;
+    document.querySelector('.test').addEventListener('click',function(){
+      alert("hello");
+    });
+  }
+}
+box5.clickMe();
