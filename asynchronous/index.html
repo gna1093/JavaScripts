@@ -85,12 +85,31 @@
       //   console.log('error');
       // });
 
-      async function getReceipeAM(){
-          const IDs = await getIDs;
-          console.log(IDs);
-
-      }
-      getReceipeAM();
+      // async function getReceipeAM(){
+      //     const IDs = await getIDs;
+      //     console.log(IDs);
+      //
+      //     const recipe = await getReceipe(IDs[2]);
+      //     console.log(recipe);
+      //
+      //     const related = await getRelated('prakash')
+      //     console.log(related);
+      //
+      //     return recipe;
+      // }
+      // getReceipeAM().then(result => console.log(`${result}`));
+      const url = 'https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?query=san'
+      fetch(url)
+      .then(result => {
+        console.log(result);
+        return result.json();
+      })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.log(console.error());
+      });
 
     </script>
 </body>
